@@ -1,0 +1,25 @@
+
+<!-- https://ui5.sap.com/#/api/sap.m.App%23aggregations 
+
+udemy 21.19 
+cara console web 
+this.getView().getParent().getParent()
+= sId:__xmlview0
+
+-->
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:l="sap.ui.layout"
+>
+    <App id="app">
+        <pages>
+            <mvc:XMLView id="initialPage" viewName="ui5.walkthrough.view.First" />
+            <mvc:XMLView id="detailPage" viewName="ui5.walkthrough.view.Second"
+
+            />
+        </pages>
+    </App>
+</mvc:View>

@@ -1,0 +1,25 @@
+
+<!-- https://ui5.sap.com/#/api/sap.m.App%23aggregations -->
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    controllerName="ui5.walkthrough.controller.Second"
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:l="sap.ui.layout"
+>
+    	<Page enableScrolling="true" 
+        title="Detail" 
+        showNavButton="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        >
+        <content>
+        	<ObjectHeader
+                title="{Name}"
+                condensed="true"
+                number="{ID}"
+                class="sapUiResponsivePadding--header" >
+                
+            </ObjectHeader>
+        </content>
+        </Page >
+</mvc:View>
