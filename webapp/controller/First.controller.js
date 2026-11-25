@@ -67,28 +67,18 @@ sap.ui.define([
             onSayHiPress: function () {
                 console.log('poooo!');
             },
-            // onListItemPress: function (oEvent) {
-            //     var oApp = this.getView().getView().byid("app");
-            //     var oDetailPage = this.getView().getView().byid("detailPage");
-
-            //     oApp.to(oDetailPage);
-            // }
             onListItemPress: function (oEvent) {
-                console.log(this, this.getView());
-                
-                var oComponent = this.getOwnerComponent();
-                var oRootView = oComponent && oComponent.getRootControl();
+                var oView = this.getView();
+                var oApp = oView.getParent(); // langsung sap.m.App (__xmlview0--app)
 
-                var oApp = oRootView && oRootView.isA("sap.m.App")
-                    ? oRootView
-                    : oRootView && oRootView.byId("app")
-                
-                var oDetailPage = oRootView && oRootView.byId("detailPage");
+                var oDetailPage = oApp && oApp.getPages().find(function (oPage) {
+                    return oPage.getId().indexOf("detailPage") !== -1;
+                });
 
                 if (oApp && oDetailPage) {
-                    oApp.to(oDetailPage)
+                    oApp.to(oDetailPage);
                 } else {
-                    console.warn("oApp atau oDetailPage tidak ditemukan", { oApp: oApp, oDetailPage: oDetailPage });
+                    console.warn("Navigasi gagal:", { oApp: oApp, oDetailPage: oDetailPage });
                 }
             }
         }
