@@ -51,13 +51,13 @@ sap.ui.define([
                 });
 
                 this.getView().setModel(oModel);
-                this.getView().setModel(oJsonModel, 'sweetModel')
+                this.getView().setModel(oJsonModel, "sweetModel");
 
                 const resourceBundle = new ResourceModel({
-                    bundleName: 'ui5.walkthrough.i18n.i18n'
+                    bundleName: "ui5.walkthrough.i18n.i18n"
                 });
 
-                this.getView().setModel(resourceBundle, 'translateableTexts')
+                this.getView().setModel(resourceBundle, "translateableTexts");
             },
             onImagePress: function (oEvent) {
                 oEvent.getSource().getId().endsWith('image1')
@@ -72,13 +72,52 @@ sap.ui.define([
                 var oApp = oView.getParent(); // langsung sap.m.App (__xmlview0--app)
 
                 var oDetailPage = oApp && oApp.getPages().find(function (oPage) {
+                    console.log('= ', oPage);
+                    // sId: __xmlview0--detailPage
+                    var aa = oPage.getId();
+                    console.log('== ', aa); //  __xmlview0--detailPage
+
+                    // indexOf('something') = apakah 'something' terdapat dalam oPage.getId()
+                    // kalau ada = true; kalau tidak ada = false / -1
+
                     return oPage.getId().indexOf("detailPage") !== -1;
                 });
 
-                if (oApp && oDetailPage) {
+                /*
+                mObjectBindingInfos
+                mProperties
+                oBindingContexts
+                    sweetModel: constructor {oModel: constructor, sPath: '/SweetShops/1', bForceRefresh: false, sDeepPath: ''}
+                oParent
+                dll
+                */
+
+                var oContext = oEvent.getSource().getBindingContext('sweetModel')
+
+                /*
+                bForceRefresh
+                : 
+                false
+                oModel
+                : 
+                constructor {pSequentialImportCompleted: Promise, mEventRegistry: {…}, mMessages: {…}, id: 'id-1795591117825-10', aBindings: Array(6), …}
+                sDeepPath
+                : 
+                ""
+                sPath
+                : 
+                "/SweetShops/1"
+                
+                */
+
+                if (oApp && oDetailPage && oContext) {
+                    // Pastikan model "sweetModel" juga terdaftar di oApp / oDetailPage
+                    oApp.setModel(oView.getModel("sweetModel"), "sweetModel");
+
+                    oDetailPage.setBindingContext(oContext, "sweetModel");
                     oApp.to(oDetailPage);
                 } else {
-                    console.warn("Navigasi gagal:", { oApp: oApp, oDetailPage: oDetailPage });
+                    console.warn("Navigasi gagal:", { oApp: oApp, oDetailPage: oDetailPage, oContext: oContext });
                 }
             }
         }

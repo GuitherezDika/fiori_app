@@ -11,12 +11,13 @@
         title="Detail" 
         showNavButton="true"
         class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        navButtonPress="onNavButtonPress"
         >
         <content>
         	<ObjectHeader
-                title="{Name}"
+                title="{sweetModel>Name}"
                 condensed="true"
-                number="{ID}"
+                number="{sweetModel>ID}"
                 class="sapUiResponsivePadding--header" >
                 
             </ObjectHeader>

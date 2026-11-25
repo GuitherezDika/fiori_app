@@ -6,8 +6,8 @@ sap.ui.define([
     'sap/ui/model/resource/ResourceModel',
     "sap/m/MessageToast"
 ], (
-    Controller, 
-    JSONModel, 
+    Controller,
+    JSONModel,
     ResourceModel,
     MessageToast
 ) => {
@@ -15,7 +15,11 @@ sap.ui.define([
     return Controller.extend(
         "ui5.walkthrough.controller.Second",
         {
-           
+            onNavButtonPress: function () {
+                var oView = this.getView();
+                var oApp = oView.getParent(); // langsung sap.m.App (__xmlview0--app)
+                oApp.back();
+            }
         }
     )
 })
